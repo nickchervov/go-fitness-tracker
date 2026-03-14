@@ -22,7 +22,7 @@ func parseTraining(data string) (int, string, time.Duration, error) {
 
 	datas := strings.Split(data, ",")
 	if len(datas) != 3 {
-		return 0, "", 0, fmt.Errorf("во входящих данных недостаточно аргументов.")
+		return 0, "", 0, fmt.Errorf("not enough arguments in the incoming data.")
 	}
 
 	steps, err := strconv.Atoi(datas[0])
@@ -37,8 +37,11 @@ func parseTraining(data string) (int, string, time.Duration, error) {
 		return 0, "", 0, err
 	}
 
-	if steps <= 0 || duration <= 0 {
-		return 0, "", 0, fmt.Errorf("введены некорректные значения.")
+	if steps <= 0 {
+		return 0, "", 0, fmt.Errorf("steps less than or equal to 0.")
+	}
+	if duration <= 0 {
+		return 0, "", 0, fmt.Errorf("duration less than or equal to 0.")
 	}
 
 	return steps, action, duration, nil
@@ -59,6 +62,7 @@ func meanSpeed(steps int, height float64, duration time.Duration) float64 {
 	// TODO: реализовать функцию
 
 	if duration <= 0 {
+		log.Println("duration less than or equal to 0")
 		return 0
 	}
 
@@ -84,8 +88,12 @@ func TrainingInfo(data string, weight, height float64) (string, error) {
 		log.Println(err)
 		return "", err
 	}
-	if steps <= 0 || duration <= 0 {
-		log.Println("введены некорректные значения.")
+
+	if steps <= 0 {
+		log.Println("steps less than or equal to 0.")
+	}
+	if duration <= 0 {
+		log.Println("duration less than or equal to 0.")
 	}
 
 	switch action {
@@ -115,8 +123,17 @@ func TrainingInfo(data string, weight, height float64) (string, error) {
 func RunningSpentCalories(steps int, weight, height float64, duration time.Duration) (float64, error) {
 	// TODO: реализовать функцию
 
-	if steps <= 0 || weight <= 0 || height <= 0 || duration <= 0 {
-		return 0, fmt.Errorf("введены некорректные значения.")
+	if steps <= 0 {
+		return 0, fmt.Errorf("steps less than or equal to 0.")
+	}
+	if weight <= 0 {
+		return 0, fmt.Errorf("weight less than or equal to 0.")
+	}
+	if height <= 0 {
+		return 0, fmt.Errorf("height less than or equal to 0.")
+	}
+	if duration <= 0 {
+		return 0, fmt.Errorf("duration less than or equal to 0.")
 	}
 
 	averageSpeed := meanSpeed(steps, height, duration)
@@ -131,8 +148,17 @@ func RunningSpentCalories(steps int, weight, height float64, duration time.Durat
 func WalkingSpentCalories(steps int, weight, height float64, duration time.Duration) (float64, error) {
 	// TODO: реализовать функцию
 
-	if steps <= 0 || weight <= 0 || height <= 0 || duration <= 0 {
-		return 0, fmt.Errorf("введены некорректные значения.")
+	if steps <= 0 {
+		return 0, fmt.Errorf("steps less than or equal to 0.")
+	}
+	if weight <= 0 {
+		return 0, fmt.Errorf("weight less than or equal to 0.")
+	}
+	if height <= 0 {
+		return 0, fmt.Errorf("height less than or equal to 0.")
+	}
+	if duration <= 0 {
+		return 0, fmt.Errorf("duration less than or equal to 0.")
 	}
 
 	averageSpeed := meanSpeed(steps, height, duration)

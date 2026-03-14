@@ -21,7 +21,7 @@ func parsePackage(data string) (int, time.Duration, error) {
 	// TODO: реализовать функцию
 	datas := strings.Split(data, ",")
 	if len(datas) != 2 {
-		return 0, 0, fmt.Errorf("во входящих данных недостаточно аргументов.")
+		return 0, 0, fmt.Errorf("not enough arguments in the incoming data.")
 	}
 
 	steps, err := strconv.Atoi(datas[0])
@@ -34,8 +34,12 @@ func parsePackage(data string) (int, time.Duration, error) {
 		return 0, 0, err
 	}
 
-	if steps <= 0 || duration <= 0 {
-		return 0, 0, fmt.Errorf("введены неккоректные значения.")
+	if steps <= 0 {
+		return 0, 0, fmt.Errorf("steps less than or equal to 0.")
+	}
+
+	if duration <= 0 {
+		return 0, 0, fmt.Errorf("duration less than or equal to 0.")
 	}
 
 	return steps, duration, nil
@@ -55,8 +59,13 @@ func DayActionInfo(data string, weight, height float64) string {
 		return ""
 	}
 
-	if steps <= 0 || duration <= 0 {
-		log.Println("введены некорректные значения.")
+	if steps <= 0 {
+		log.Println("steps less than or equal to 0.")
+		return ""
+	}
+
+	if duration <= 0 {
+		log.Println("duration less than or equal to 0.")
 		return ""
 	}
 
